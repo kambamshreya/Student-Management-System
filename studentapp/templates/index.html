@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col bg-success text-center">
+                <h1>Student Records</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col bg-info text-center">
+            <h2>Filling the students details</h2>
+        </div>
+        <div class="row">
+            <div class="col-4 mt-5">
+                <form action="addrecord/" method="post">
+                  {% csrf_token %}
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form2Example1">student_name</label>
+                        <input type="text" id="form2Example1" class="form-control" name="student_name"/>
+                      
+                    </div>
+                  
+                    
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form2Example2">roll_no</label>
+                        <input type="text" id="form2Example2" class="form-control" name='roll_no'/>
+                      
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form2Example2">branch</label>
+                        <input type="text" id="form2Example2" class="form-control" name='branch'/>
+                        
+                      </div>
+                <div class="text-center">
+                        <input type="submit" class="btn btn-primary btn-block mb-4 text-center" value="add record"></>
+                </div>
+
+                    
+                  
+                 
+                    </div>
+                </form>
+                    <div class="col-8 mt-5 bg-info">
+                        <h1 align="center">Student Details</h1>
+                        <table  class='table table-bordered pt-5 mt-5' border="4" align="center" cellpadding="6px" cellspacing="3px">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Update</th> <th>student_name</th>
+                                <th scope="col">roll_no</th>
+                                <th scope="col">branch</th>
+                                <th scope="col">delete</th>
+                                <th>CheckBoxes</th>
+                            </tr>
+                            <form action="dele/" method="post">
+                                {% csrf_token%}
+                                   {% for x in student %}
+                                   <tr>
+                                    
+                                    <td><a href="update/{{x.id}}">{{x.id}}</a></td>
+                                    <td scope="col">{{x.student_name}}</td>
+                                    <td scope="col">{{x.roll_no}}</td>
+                                    <td scope="col">{{x.branch}}</td>
+                                    <td scope="col"><a href="delete/{{x.id}}">delete</a></td>
+                                    <td scope="col"><input type="checkbox" name="{{x.id}}" value="{{x.id}}">Enter</td>
+                                   </tr>
+                                   {% endfor %}
+                                
+
+
+                                </thead>    
+                        </table>
+<div class="text-center">
+    <input type="submit" value="Delete Submitted Records">
+</div>
+</form>
+                    </div>
+                  
+                
+            </div>
+
+
+        </div>
+    </div>
+    
+</body>
+</html>
